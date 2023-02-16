@@ -1,0 +1,34 @@
+<% if @post.errors.any?%>
+    <div class="alert alert-danger" role="alert">
+        <%= @post.errors.full_messages%>
+    </div>    
+<% end %>
+
+<%= form_for @post do |f| %>
+
+    <div class="form-floating mb-3">
+     <%= f.text_field :toyName, type:"toyName", class:"form-control", id:"floatingInput", placeholder:"" %>
+        <label for="floatingToyName">Toy Name</label>
+    </div>
+    
+    <div class="form-floating mb-3">
+     <%= f.text_field :content, type:"content", class:"form-control", id:"floatingInput", placeholder:"" %>
+    <label for="floatingContent">Content</label>
+    </div>
+
+    <div class="form-floating mb-3">
+    <%= f.text_field :price, type:"price", class:"form-control", id:"floatingInput", placeholder:"" %>
+    <label for="floatingPrice">Price</label>
+    </div>
+
+    <div class="form-floating mb-3">
+    <%= f.text_field :email, type:"email", class:"form-control", id:"floatingInput", placeholder:"" %>
+    <label for="floatingEmail">Email</label>
+    </div>
+
+    <%= f.submit class: "btn btn-outline-secondary" %>
+
+
+<% end %>
+
+  

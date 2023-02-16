@@ -1,0 +1,18 @@
+<table>
+  <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h2><%= @post.toyName %></h2>
+          <p><%= @post.content %> | <%= @post.price %> | <%= @post.email %> </p>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <%= link_to 'Home', root_path, class:"btn btn-outline-secondary" %>
+          <%= link_to 'Edit', edit_post_path, class:"btn btn-outline-success" %>
+          <%= link_to 'Back', posts_path, class:"btn btn-outline-secondary" %>
+        </div>
+        
+        </div>
+  </div>
+</table>
+
+
+

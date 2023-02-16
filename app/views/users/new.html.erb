@@ -1,0 +1,29 @@
+  <% if @user.errors.any?%>
+        <div class="alert alert-danger" role="alert">
+            <%= @user.errors.full_messages%>
+        </div>
+        
+     <% end %>
+
+
+  <%= form_for @user do |f| %>
+  <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
+
+   <div class="form-floating mb-3">
+    <%= f.text_field :name, class: "form-control", id: "floatingInput", value: @user.name %>
+    <%= f.label :name, "Name", class: "form-label", for: "floatingName" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, class: "form-control", id: "floatingInput", value: @user.email %>
+    <%= f.label :email, "Email", class: "form-label", for: "floatingEmail" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, class: "form-control", id: "floatingInput" %>
+    <%= f.label :password, "Password", class: "form-label", for: "floatingPassword" %>
+  </div>
+
+  <%= f.submit "Register", class: "btn btn-outline-success" %>
+
+<% end %>
