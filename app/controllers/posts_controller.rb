@@ -50,6 +50,25 @@ class PostsController < ApplicationController
       redirect_to '/posts', notice: 'Deleted' 
   end
 
+  def remove_image
+    @post = Post.find(params[:id])
+    @post.image.purge
+    redirect_to @post
+  end
+
+#  def remove_imageTwo
+#     @post = Post.find(params[:id])
+#     @post.imageTwo.purge
+#     redirect_to @post
+#   end
+
+  def remove_pictures
+    @post = Post.find(params[:id])
+    @post.pictures.purge
+    redirect_to @post
+  end
+
+
   private
 
   # def set_post
@@ -58,11 +77,12 @@ class PostsController < ApplicationController
 
 
   def post_params
-      params.require(:post).permit(:toyName, :content, :price, :email)
+      params.require(:post).permit(:toyName, :content, :price, :email, :image, pictures: [])
   end
 
   def find_post
-      @post = Post.find_by(id: params[:id])
+    @post = Post.find(params[:id])
   end
+
 end
 

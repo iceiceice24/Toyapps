@@ -34,12 +34,12 @@ end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    session.clear
-    flash[:success] = "User account and associated data has been deleted"
+    session[:user_id] = nil
+    @user = current_user
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
     redirect_to root_path
-  end
+end
 
   private
 

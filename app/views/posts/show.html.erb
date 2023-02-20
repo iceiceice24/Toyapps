@@ -1,18 +1,32 @@
-<table>
-  <div class="col-md-6">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h2><%= @post.toyName %></h2>
-          <p><%= @post.content %> | <%= @post.price %> | <%= @post.email %> </p>
+<div class="col-md-6 mx-auto">
+  <div class="h-100 p-5 text-bg-dark rounded-3">
 
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <%= link_to 'Home', root_path, class:"btn btn-outline-secondary" %>
-          <%= link_to 'Edit', edit_post_path, class:"btn btn-outline-success" %>
-          <%= link_to 'Back', posts_path, class:"btn btn-outline-secondary" %>
-        </div>
-        
-        </div>
+  <div style="margin-bottom: 10px;">
+  <% if @post.image.attached? %>
+    <%= link_to image_tag(@post.image, style:"width:300px; height:400px;"), @post.image %>
+  <% end %>
+</div>
+
+<%# <div style="margin-bottom: 10px;">
+  <% if @post.imageTwo.attached? 
+    <%= link_to image_tag(@post.imageTwo, style:"width:300px; height:400px;"), @post.imageTwo 
+  <% end 
+</div> %>
+
+<% @post.pictures.each do |picture| %>
+  <div style="margin-bottom: 10px;">
+    <%= link_to image_tag(picture, style:"width:300px; height:400px;"), picture %>
   </div>
-</table>
+<% end %>
 
 
-
+    <h2><%= @post.toyName %></h2>
+    <p><%= @post.content %> | <%= @post.price %> | <%= @post.email %> </p>
+   
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <%= link_to 'Home', root_path, class:"btn btn-outline-secondary" %>
+      <%= link_to 'Edit', edit_post_path, class:"btn btn-outline-success" %>
+      <%= link_to 'Back', posts_path, class:"btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>

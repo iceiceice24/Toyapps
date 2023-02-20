@@ -1,28 +1,33 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Toy Name</th>
-      <th scope="col">Content</th>
-      <th scope="col">Price</th>
-      <th scope="col">Email</th>
+      <th>Toy Name</th>
+      <th>Content</th>
+      <th>Price</th>
+      <th>Email</th>
       <th scope="col"> <%= link_to 'Create New Post', new_post_path, class:"btn btn-outline-secondary" %> </th>
+      <th></th>
+      <th></th>
+      <th>Image</th>
     </tr>
   </thead>
-  <tbody class="table-group-divider">
+  <tbody>
     <% @posts.each do |post| %>
-    <tr>
-            <td> <%= post.toyName%> </td>
-            <td> <%= post.content%> </td>
-            <td> <%= post.price%> </td>
-            <td> <%= post.email%> </td>
-            <td> <%= link_to 'show', post_path(post.id), class:"btn btn-outline-secondary" %>  </td>
-            <td> <%= link_to 'edit', edit_post_path(post.id), class:"btn btn-outline-secondary" %>  </td>
-            <td> <%= button_to 'delete', post_path(post.id), method: :delete, class:"btn btn-outline-danger" %> </td>
-    </tr>
-     <% end %>
-    
-    
-
+      <tr>
+        <td><%= post.toyName %></td>
+        <td><%= post.content %></td>
+        <td><%= post.price %></td>
+        <td><%= post.email %></td>
+        <td> <%= link_to 'show', post_path(post.id), class:"btn btn-outline-secondary" %>  </td>
+        <td> <%= link_to 'edit', edit_post_path(post.id), class:"btn btn-outline-secondary" %>  </td>
+        <td> <%= button_to 'delete', post_path(post.id), method: :delete, class:"btn btn-outline-danger" %> </td>
+        <td>
+          <% if post.image.attached? %>
+            <%= image_tag post.image.variant(resize_to_limit: [100, 100]) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

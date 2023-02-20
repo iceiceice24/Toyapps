@@ -6,29 +6,54 @@
 
 <%= form_for @post do |f| %>
 
-    <div class="form-floating mb-3">
+    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;" >
      <%= f.text_field :toyName, type:"toyName", class:"form-control", id:"floatingInput", placeholder:"" %>
         <label for="floatingToyName">Toy Name</label>
     </div>
     
-    <div class="form-floating mb-3">
+    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
      <%= f.text_field :content, type:"content", class:"form-control", id:"floatingInput", placeholder:"" %>
     <label for="floatingContent">Content</label>
     </div>
 
-    <div class="form-floating mb-3">
+    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px; ">
     <%= f.text_field :price, type:"price", class:"form-control", id:"floatingInput", placeholder:"" %>
     <label for="floatingPrice">Price</label>
     </div>
 
-    <div class="form-floating mb-3">
+    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
+     <%= f.file_field :image, class: "form-control" %>
+     <label for="post_image">1st Image</label>
+    </div>
+
+     <%# <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
+     <%= f.file_field :imageTwo, class: "form-control"
+    </div> %>
+
+    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
+    <%= f.file_field :pictures, multiple: true, class: "form-control"%>
+    <label for="post_pictures">Many Images</label>
+    </div>
+
+    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
     <%= f.text_field :email, type:"email", class:"form-control", id:"floatingInput", placeholder:"" %>
     <label for="floatingEmail">Email</label>
     </div>
 
-    <%= f.submit class: "btn btn-outline-secondary" %>
-
-
+    <div class="form-floating mb-3" style="margin-left: 10px;">
+    <%= f.submit class: "btn btn-outline-success" %>
+    </div>
 <% end %>
+    <div class="form-floating mb-3" style="margin-left: 10px;">
+        <%= button_to 'Remove 1st Image', remove_image_post_path(@post), method: :delete, class: "btn btn-outline-danger" %>
+    </div>
+
+    <%# <div class="form-floating mb-3" style="margin-left: 10px;">
+        <%= button_to 'Remove 2nd Image', remove_imageTwo_post_path(@post), method: :delete, class: "btn btn-outline-danger" 
+    </div> %>
+
+    <div class="form-floating mb-3" style="margin-left: 10px;">
+        <%= button_to 'Remove Pictures', remove_pictures_post_path(@post), method: :delete, class: "btn btn-outline-danger" %>
+    </div>
 
   
