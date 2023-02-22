@@ -51,7 +51,6 @@ gem "image_processing", "~> 1.2"
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'turbolinks'
 gem 'webpacker'
-gem 'slick-carousel-rails'
 
 
 group :development, :test do
