@@ -1,32 +1,23 @@
 <div class="col-md-6 mx-auto">
-  <div class="h-100 p-5 text-bg-dark rounded-3">
-
-  <div style="margin-bottom: 10px;">
-  <% if @post.image.attached? %>
-    <%= link_to image_tag(@post.image, style:"width:300px; height:400px;"), @post.image %>
-  <% end %>
-</div>
-
-<%# <div style="margin-bottom: 10px;">
-  <% if @post.imageTwo.attached? 
-    <%= link_to image_tag(@post.imageTwo, style:"width:300px; height:400px;"), @post.imageTwo 
-  <% end 
-</div> %>
-
-<% @post.pictures.each do |picture| %>
-  <div style="margin-bottom: 10px;">
-    <%= link_to image_tag(picture, style:"width:300px; height:400px;"), picture %>
-  </div>
-<% end %>
-
-
-    <h2><%= @post.toyName %></h2>
-    <p><%= @post.content %> | <%= @post.price %> | <%= @post.email %> </p>
+  <div class="h-100 p-5 bg-light rounded-3">
+    
+    <div class="mb-4">
+      <% if @post.image.attached? %>
+        <%= link_to image_tag(@post.image, class: "img-fluid rounded"), @post.image %>
+      <% end %>
+      
+      <% @post.pictures.each do |picture| %>
+        <%= link_to image_tag(picture, class: "img-fluid rounded"), picture %>
+      <% end %>
+    </div>
+    
+    <h2 class="mb-3"><%= @post.toyName %></h2>
+    <p class="mb-4"><%= @post.content %> | <%= @post.price %> | <%= @post.email %> </p>
    
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <%= link_to 'Home', root_path, class:"btn btn-outline-secondary" %>
-      <%= link_to 'Edit', edit_post_path, class:"btn btn-outline-success" %>
-      <%= link_to 'Back', posts_path, class:"btn btn-outline-secondary" %>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <%= link_to 'Home', root_path, class:"btn btn-outline-primary me-md-2 mb-2 mb-md-0" %>
+      <%= link_to 'Edit', edit_post_path, class:"btn btn-outline-success me-md-2 mb-2 mb-md-0" %>
+      <%= link_to 'Back', posts_path, class:"btn btn-outline-primary" %>
     </div>
   </div>
 </div>

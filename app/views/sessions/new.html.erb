@@ -5,22 +5,26 @@
         
      <% end %>
 
-
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
 <%= form_for @user, url: sessions_path do |f| %>
   <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
 
-  <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
-    <%= f.email_field :email, class: "form-control", id: "floatingInput", value: @user.email %>
-    <%= f.label :email, "Email", class: "form-label", for: "floatingEmail" %>
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, class: "form-control", id: "floatingEmail", placeholder: " " %>
+    <%= f.label :email, "Email", class: "form-label" %>
   </div>
 
-  <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
-    <%= f.password_field :password, class: "form-control", id: "floatingInput" %>
-    <%= f.label :password, "Password", class: "form-label", for: "floatingPassword" %>
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, class: "form-control", id: "floatingPassword", placeholder: " " %>
+    <%= f.label :password, "Password", class: "form-label" %>
   </div>
+  
 
-  <div class="form-floating mb-3" style="margin-left: 10px;">
-  <%= f.submit "Sign In", class: "btn btn-outline-success" %>
+  <div class="d-grid gap-2">
+  <%= f.submit "Sign In", class: "btn btn-success" %>
    </div>
   
 <% end %>
+ </div>
+  </div>

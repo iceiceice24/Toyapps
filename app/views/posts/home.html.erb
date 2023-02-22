@@ -1,15 +1,55 @@
-<div class="row">
-  <% @posts.each do |post| %>
-    <div class="col-md-6 mb-4">
-      <div class="card h-40 w-40" style= "margin-left: 10px;">
-        <% if post.image.attached? %>
-          <%= image_tag(post.image, class: "card-img-top", style: "height: 350px; width: 450px; object-fill: cover; ") %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= post.toyName %></h5>
-          <p class="card-text"><%= post.content %> | <%= post.price %> | <%= post.email %></p>
+<table>
+<div id="carouselExampleControls" class="carousel slide mx-auto" data-bs-ride="carousel" style="width: 300px; margin-bottom: 50px;">
+  <div class="carousel-inner">
+    <% @posts.each_with_index do |post, index| %>
+      <div class="carousel-item <%= 'active' if index.zero? %>">
+        <%= image_tag(post.image, class: "d-block w-100") %>
+        <div class="carousel-caption d-none d-md-block">
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
+</table>
+
+
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-6 mb-4">
+        <div class="card h-40 w-40 p-3 bg-light" style="margin-left: 10px; text-align: center;">
+          <% if post.image.attached? %>
+            <%= image_tag(post.image, class: "card-img-top mx-auto d-block", style: "height: 350px; width: 450px; object-fill: cover; ") %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.toyName %></h5>
+            <p class="card-text"><%= post.content %> | <%= post.price %> | <%= post.email %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .card-text {
+    font-size: 1.2rem;
+  }
+
+  .row {
+    margin-bottom: 2rem;
+  }
+</style>

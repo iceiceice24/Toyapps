@@ -1,39 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-body-light" style="background-color: #e3f2fd;">
   <div class="container-fluid">
-   
+   <a class="navbar-brand" href="<%= root_path %>">Toy App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-            <td> <%= link_to 'Toy App', root_path, class:"navbar-brand" %> </td>
-
-            <% if current_user %> 
-             <td> <%= link_to 'Toys', posts_path, class:"btn btn-outline-secondary" %> </td>
-              <td> <%= link_to "Log out", sign_out_path, class:"btn btn-outline-secondary" %> </td>
-               <td> <%= link_to "Update", edit_path(current_user), class:"btn btn-outline-secondary" %> </td>
-            <% else %> 
-             <td> <%= link_to "Sign in", sign_in_path, class:"btn btn-outline-secondary" %> </td>
-              <td> <%= link_to "Register", register_path, class:"btn btn-outline-secondary" %> </td>
-            <% end %> 
-          </tr>
-          
-        </li>
-        </tbody>
-        </table>
-    </div>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <% if current_user %> 
+      <li class="nav-item">
+        <%= link_to 'Toys', posts_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Account", edit_path(current_user), class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Log out", sign_out_path, method: :delete, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link">Logged in as: <strong><%= current_user.name %></strong></span>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign in", sign_in_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Register", register_path, class:"nav-link" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
   </div>
 </nav>
-
-
-
-
-
-        
-
-          
-

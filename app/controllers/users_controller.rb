@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to posts_path
   else
       flash[:notice] = @user.errors.full_messages.to_sentence
-      redirect_to root_path    
+      redirect_to register_path    
   end
 end
 

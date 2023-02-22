@@ -1,53 +1,95 @@
-    <% if @post.errors.any?%>
-        <div class="alert alert-danger" role="alert">
-            <%= @post.errors.full_messages%>
-        </div>
-        
-     <% end %>
+<% if @post.errors.any?%>
+    <div class="alert alert-danger" role="alert">
+        <%= @post.errors.full_messages%>
+    </div>    
+<% end %>
 
-<%= form_for @post do |f| %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <div class="form-floating ml-3", style="width: 500px; height: 100px; margin-left: 10px;">
-     <%= f.text_field :toyName, type:"toyName", class:"form-control", id:"floatingInput", placeholder:"" %>
-        <label for="floatingToyName">Toy Name</label>
-    </div>
-    
-    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
-     <%= f.text_field :content, type:"content", class:"form-control", id:"floatingInput", placeholder:"" %>
+<%= form_for @post,  data: { turbolinks: true } do |f| %>
+
+  <div class="form-floating mb-3" style="width: 500px;">
+    <%= f.text_field :toyName, type:"toyName", class:"form-control", id:"floatingInput", placeholder:"" %>
+    <label for="floatingToyName">Toy Name</label>
+  </div>
+
+  <div class="form-floating mb-3" style="width: 500px;">
+    <%= f.text_field :content, type:"content", class:"form-control", id:"floatingInput", placeholder:"" %>
     <label for="floatingContent">Content</label>
-    </div>
+  </div>
 
-    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
+  <div class="form-floating mb-3" style="width: 500px;">
     <%= f.text_field :price, type:"price", class:"form-control", id:"floatingInput", placeholder:"" %>
     <label for="floatingPrice">Price</label>
-    </div>
+  </div>
 
-    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
-     <%= f.file_field :image, class: "form-control" %>
-     <label for="post_image">1st Image</label>
-    </div>
-
-     <%# <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
-     <%= f.file_field :imageTwo, class: "form-control" 
-     <label for="post_imageTwo">2nd Image</label>
-     </div> %>
-
-    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px;">
-    <%= f.file_field :pictures, multiple: true, class: "form-control"%>
-    <label for="post_pictures">Many Images</label>
-    </div>
-
-
-    <div class="form-floating", style="width: 500px; height: 100px; margin-left: 10px; ">
+  <div class="form-floating mb-3" style="width: 500px;">
     <%= f.text_field :email, type:"email", class:"form-control", id:"floatingInput", placeholder:"" %>
     <label for="floatingEmail">Email</label>
-    </div>
+  </div>
 
-    <div class="form-floating mb-3" style="margin-left: 10px;">
-    <%= f.submit class: "btn btn-outline-secondary" %>
-    </div>
+  <div class="form-floating mb-3" style="width: 500px;">
+    <%= f.file_field :image, class: "form-control", id: "post-image" %>
+    <label for="post_image">1st Image</label>
+    <div class="preview-image-container"></div>
+  </div>
 
+  <div class="form-floating mb-3" style="width: 500px;">
+    <%= f.file_field :pictures, multiple: true, class: "form-control", id: "post-pictures" %>
+    <label for="post_pictures">Many Images</label>
+    <div class="preview-images-container"></div>
+  </div>
 
-    <% end %>
-
+  <div class="form-floating mb-3">
+    <%= f.submit class: "btn btn-outline-success" %>
+  </div>
   
+<% end %>
+
+<script>
+  const postImageInput = document.querySelector('#post-image');
+  const postPicturesInput = document.querySelector('#post-pictures');
+  const previewImageContainer = document.querySelector('.preview-image-container');
+  const previewImagesContainer = document.querySelector('.preview-images-container');
+
+  postImageInput.addEventListener('change', function() {
+    // Remove any previous preview image
+    while (previewImageContainer.firstChild) {
+      previewImageContainer.removeChild(previewImageContainer.firstChild);
+    }
+
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        const previewImage = document.createElement('img');
+        previewImage.setAttribute('src', this.result);
+        previewImage.setAttribute('class', 'preview-image');
+        previewImageContainer.appendChild(previewImage);
+      });
+      reader.readAsDataURL(file);
+    }
+  });
+
+   postPicturesInput.addEventListener('change', function() {
+  // Remove any previous preview images
+  while (previewImagesContainer.firstChild) {
+    previewImagesContainer.removeChild(previewImagesContainer.firstChild);
+  }
+
+  const files = this.files;
+  if (files) {
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        const postPicturesInput = document.createElement('img');
+        postPicturesInput.setAttribute('src', this.result);
+        postPicturesInput.setAttribute('class', 'preview-image');
+        previewImagesContainer.appendChild(postPicturesInput);
+      });
+      reader.readAsDataURL(files[i]);
+    }
+  }
+});
+
+</script>

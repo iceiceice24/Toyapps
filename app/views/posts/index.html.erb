@@ -1,33 +1,50 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Toy Name</th>
-      <th>Content</th>
-      <th>Price</th>
-      <th>Email</th>
-      <th scope="col"> <%= link_to 'Create New Post', new_post_path, class:"btn btn-outline-secondary" %> </th>
-      <th></th>
-      <th></th>
-      <th>Image</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.toyName %></td>
-        <td><%= post.content %></td>
-        <td><%= post.price %></td>
-        <td><%= post.email %></td>
-        <td> <%= link_to 'show', post_path(post.id), class:"btn btn-outline-secondary" %>  </td>
-        <td> <%= link_to 'edit', edit_post_path(post.id), class:"btn btn-outline-secondary" %>  </td>
-        <td> <%= button_to 'delete', post_path(post.id), method: :delete, class:"btn btn-outline-danger" %> </td>
-        <td>
-          <% if post.image.attached? %>
-            <%= image_tag post.image.variant(resize_to_limit: [100, 100]) %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header bg-body-light">
+          <h4 class="card-title">Toy Posts</h4>
+          <%= link_to 'Create New Post', new_post_path, class:"btn btn-primary btn-sm float-end" %>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Toy Name</th>
+                <th>Content</th>
+                <th>Price</th>
+                <th>Email</th>
+                <th>Image</th>
+                <th colspan="3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @posts.each do |post| %>
+                <tr>
+                  <td><%= post.toyName %></td>
+                  <td><%= post.content %></td>
+                  <td><%= post.price %></td>
+                  <td><%= post.email %></td>
+                  <td>
+                    <% if post.image.attached? %>
+                      <%= image_tag post.image.variant(resize_to_limit: [100, 100]), class: "img-thumbnail" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show', post_path(post.id), class:"btn btn-secondary btn-sm" %>
+                  </td>
+                  <td>
+                    <%= link_to 'Edit', edit_post_path(post.id), class:"btn btn-success btn-sm" %>
+                  </td>
+                  <td>
+                    <%= button_to 'Delete', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
